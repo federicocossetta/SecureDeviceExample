@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">SimpleTest</string>
+    <string name="user">User</string>
+    <string name="repo_name">Repo Name</string>
+    <string name="search">Search</string>
+    <string name="no_data_available">No user found!</string>
 </resources>
