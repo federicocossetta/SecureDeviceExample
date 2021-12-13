@@ -4,4 +4,5 @@
     <string name="repo_name">Repo Name</string>
     <string name="search">Search</string>
     <string name="no_data_available">No user found!</string>
+    <string name="untrusted">Untrusted Device, can\'t proceed</string>
 </resources>
