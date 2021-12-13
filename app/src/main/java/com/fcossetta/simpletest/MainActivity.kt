@@ -30,6 +30,7 @@ class MainActivity : AppCompatActivity() {
         builder.setNetworkClient(SimpleRetrofitClient())
         try {
             securityChecker = SecurityChecker(builder.build())
+
             userRepo.addTextChangedListener(object : TextWatcher {
                 override fun beforeTextChanged(
                     s: CharSequence?,
@@ -128,19 +129,16 @@ class MainActivity : AppCompatActivity() {
                         Log.d(TAG, "onError: ")
                     }
 
-                    override fun onDeviceUntrusted(e: SecureDeviceException) {
-                        Log.d(TAG, "onDeviceUntrusted: " + Log.getStackTraceString(e))
-                        Toast.makeText(
-                            applicationContext, "Device is not trusted. Can't proceed", Toast
-                                .LENGTH_LONG
-                        ).show()
-                        showUntrusted()
-                    }
                 })
 
             val analysisResult = securityChecker.getAnalysisResult()
-            analysisResult.isEmulated
-        } catch (c: Exception) {
+        } catch (c: SecureDeviceException) {
+            Toast.makeText(
+                applicationContext, "Device is not trusted. Can't proceed", Toast
+                    .LENGTH_LONG
+            ).show()
+            showUntrusted()
+        } catch (c: java.lang.Exception) {
             Log.d(TAG, "onDeviceUntrusted: " + Log.getStackTraceString(c))
         }
     }
